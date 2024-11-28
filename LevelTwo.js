@@ -41,36 +41,41 @@ function Pet(name, age) {
     }
 }
 
+
 function Dog(name,age, breed) {
     Pet.call(this, name,age)
     this.breed = breed;
+}
 
-    this.describe = function() {
-        return `Имя: ${this.name}, Возраст: ${this.age}, Порода: ${this.breed}`
-    }
-    this.bark = function() {
-        return `${this.name} лает!`
-    }
+Dog.prototype = Object.create(Pet.prototype)
 
-    this.fetch = function(item) {
-        return `${this.name} приносит ${item}`
-    }
+Dog.prototype.describe = function() {
+    return `Имя: ${this.name}, Возраст: ${this.age}, Порода: ${this.breed}`
+}
+Dog.prototype.bark = function() {
+    return `${this.name} лает!`
+}
+
+Dog.prototype.fetch = function(item) {
+    return `${this.name} приносит ${item}`
 }
 
 function GuardDog(name,age,breed,trainingLevel) {
     Dog.call(this, name,age,breed)
     this.trainingLevel = trainingLevel
-
-    this.guard = function() {
-        return `${this.name} охраняет территорию на уровне ${this.trainingLevel}`
-    }
-
-    this.bark = function() {
-        if(this.trainingLevel > 5) return `${this.name} лает громко!`
-        return `${this.name} лает!`
-    }
-
 }
+
+GuardDog.prototype = Object.create(Dog.prototype)
+
+GuardDog.prototype.guard = function() {
+    return `${this.name} охраняет территорию на уровне ${this.trainingLevel}`
+}
+
+GuardDog.prototype.bark = function() {
+    if(this.trainingLevel > 5) return `${this.name} лает громко!`
+    return `${this.name} лает!`
+}
+
 
 Pet.compareAges = function(pet1, pet2) {
     if(pet1.age > pet2.age) return `${pet1.name} старше`
