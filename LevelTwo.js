@@ -48,7 +48,6 @@ function Dog(name,age, breed) {
 }
 
 Dog.prototype = Object.create(Pet.prototype)
-Dog.prototype.constructor = Dog
 
 Dog.prototype.describe = function() {
     return `Имя: ${this.name}, Возраст: ${this.age}, Порода: ${this.breed}`
@@ -67,7 +66,6 @@ function GuardDog(name,age,breed,trainingLevel) {
 }
 
 GuardDog.prototype = Object.create(Dog.prototype)
-GuardDog.prototype.constructor = GuardDog
 
 GuardDog.prototype.guard = function() {
     return `${this.name} охраняет территорию на уровне ${this.trainingLevel}`
